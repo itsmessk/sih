@@ -33,6 +33,40 @@
                     </li> 
                     <li class="nav-header">Procurement Information</li>
                     
+                    
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=procurement" class="nav-link nav-procurement">
+                        <i class="nav-icon fas fa-file-invoice"></i>
+                        <p>
+                          Create & Manage
+                        </p>
+                      </a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=category" class="nav-link nav-category">
+                        <i class="nav-icon fas fa-th-list"></i>
+                        <p>
+                          Category List
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=product" class="nav-link nav-product">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                          Product List
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=service" class="nav-link nav-service">
+                        <i class="nav-icon fas fa-hands-helping"></i>
+                        <p>
+                          Service List
+                        </p>
+                      </a>
+                    </li>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=items" class="nav-link nav-items">
                         <i class="nav-icon fas fa-boxes"></i>
@@ -49,9 +83,17 @@
                         </p>
                       </a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=reports" class="nav-link nav-reports">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                          Reports
+                        </p>
+                      </a>
+                    </li>
                     <li class="nav-header">Payment Info</li>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
                           Payments 
@@ -59,7 +101,7 @@
                       </a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                           Make Payment
@@ -67,7 +109,7 @@
                       </a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                           Payment History
@@ -96,17 +138,25 @@
                       </a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>
                           Invoice Information
                         </p>
                       </a>
                     </li><li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                           Payment Requests
+                        </p>
+                      </a>
+                    </li>
+                    </li><li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
+                        <i class="nav-icon fas fa-file-invoice"></i>
+                        <p>
+                          Reports
                         </p>
                       </a>
                     </li>
@@ -120,18 +170,11 @@
                         </p>
                       </a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=system_info" class="nav-link nav-system_info">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>
-                          Settings
-                        </p>
-                      </a>
-                    </li>
+                    
                     <?php endif; ?>
                     <li class="nav-header">Analytics</li>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-purchase_orders">
+                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                           Analytics & Reports

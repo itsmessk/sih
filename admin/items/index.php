@@ -13,7 +13,7 @@
 	<div class="card-body">
 		<div class="container-fluid">
         <div class="container-fluid">
-			<table class="table table-hover table-striped">
+			<table class="table table-bordered table-striped">
 				<colgroup>
 					<col width="5%">
 					<col width="15%">
@@ -23,7 +23,7 @@
 					<col width="15%">
 				</colgroup>
 				<thead>
-					<tr class="bg-navy disabled">
+					<tr class="">
 						<th>#</th>
 						<th>Date Created</th>
 						<th>Item Name</th>

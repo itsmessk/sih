@@ -25,7 +25,7 @@
 					<col width="10%">
 				</colgroup>
 				<thead>
-					<tr class="bg-navy disabled">
+					<tr class="">
 						<th>#</th>
 						<th>Date Created</th>
 						<th>PO #</th>

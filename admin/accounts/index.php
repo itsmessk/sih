@@ -25,9 +25,9 @@
 				<thead>
 					<tr>
 						<th class="text-center">#</th>
-						<th>Account #</th>
-						<th>Name</th>
-						<th>Current Balance</th>
+						<th>Vendor Account #</th>
+						<th>Company Name</th>
+						<th>Mobile Number</th>
 						<th>Date Added</th>
 						<th>Date Last Update</th>
 						<th>Action</th>

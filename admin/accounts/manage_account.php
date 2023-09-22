@@ -10,29 +10,37 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 ?>
 <div class="card card-outline card-primary">
     <div class="card-header">
-    <h3 class="card-title"><?php echo isset($_GET['id']) ? 'Update Account' : "Create New Account"; ?></h3>
+    <h3 class="card-title"><?php echo isset($_GET['id']) ? 'Update Account' : "Create New Vendor"; ?></h3>
     </div>
     <div class="card-body">
         <div class="container-fluid">
             <form id="account-form">
                 <input type="hidden" name="id" value='<?php echo isset($id)? $id : '' ?>'>
                 <div class="form-group">
-                    <label class="control-label">Account Number</label>
-                    <input type="text" class="form-control col-sm-6" name="account_number" value="<?php echo isset($account_number)? $account_number : '' ?>" required>
+                    <label class="control-label">Vendor Account Number</label>
+                    <div class="input-group col-sm-6">
+
+                        <input type="text" class="form-control col-sm-6" name="account_number" id="account_number"
+                            value="<?php echo isset($account_number) ? $account_number : '' ?>" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button"
+                                id="generate_account_number">Generate</button>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label class="control-label">First Name</label>
+                        <label class="control-label">Company Name</label>
                         <input type="text" class="form-control" name="firstname" value="<?php echo isset($firstname)? $firstname : '' ?>" required>
                     </div>
                     <div class="form-group col-sm-4">
-                        <label class="control-label">Middle Name</label>
-                        <input type="text" class="form-control" name="middlename" value="<?php echo isset($middlename)? $middlename : '' ?>" placeholder="(optional)" required>
+                        <label class="control-label">MSME Registration Number</label>
+                        <input type="text" class="form-control" name="middlename" value="<?php echo isset($middlename)? $middlename : '' ?>" placeholder="(optional) If Selected No">
                     </div>
                     <div class="form-group col-sm-4">
-                        <label class="control-label">Last Name</label>
-                        <input type="text" class="form-control" name="lastname" value="<?php echo isset($lastname)? $lastname : '' ?>" required>
+                        <label class="control-label">MSME Verified</label>
+                        <input type="text" class="form-control" name="lastname" value="<?php echo isset($lastname)? $lastname : '' ?>" placeholder="Yes/No" required>
                     </div>
                 </div>
                 <hr>
@@ -50,14 +58,15 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         </div>
                     </div>
                 </div>
+                
                 <?php if(!isset($id)): ?>
                     <div class="form-group">
-                        <label class="control-label">PIN</label>
+                        <label class="control-label">GEM Seller/ MSME ID</label>
                         <input type="text" class="form-control col-sm-6" name="pin" value="<?php echo isset($pin)? $pin : '' ?>" required>
                     </div>
                     <div class="form-group">
-                    <label class="control-label">Beginning Balance</label>
-                    <input type="number" step='any' min = "0" class="form-control col-sm-6 text-right" name="balance" value="0" required>
+                    <label class="control-label">Contact Number</label>
+                    <input type="text"  min = "0" class="form-control col-sm-6 text-right" name="balance"  required>
                 </div>
                 <?php endif; ?>
             </form>
@@ -145,5 +154,16 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                 }
             })
         })
+
     })
+</script>
+<script>
+    $(function () {
+        $('#generate_account_number').click(function () {
+            var prefix = "V-";
+            var randomCode = Math.floor(10000000 + Math.random() * 90000000);
+            var accountNumber = prefix + randomCode;
+            $('#account_number').val(accountNumber);
+        });
+    });
 </script>
