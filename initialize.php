@@ -1,5 +1,5 @@
 <?php
-$dev_data = array('id'=>'-1','firstname'=>'itsmessk','lastname'=>'','username'=>'dev_sundar','password'=>'5da283a2d990e8d8512cf967df5bc0d0','last_login'=>'','date_updated'=>'','date_added'=>'');
+$dev_data = array('id'=>'-1','firstname'=>'itsmessk','lastname'=>'','username'=>'dev_sundar','password'=>'','last_login'=>'','date_updated'=>'','date_added'=>'');
 if(!defined('base_url')) define('base_url','http://localhost/neepco/');
 if(!defined('base_app')) define('base_app', str_replace('\\','/',__DIR__).'/' );
 if(!defined('dev_data')) define('dev_data',$dev_data);

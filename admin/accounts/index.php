@@ -29,7 +29,7 @@
 						<th>Company Name</th>
 						<th>Mobile Number</th>
 						<th>Date Added</th>
-						<th>Date Last Update</th>
+						<th>Address</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -44,9 +44,9 @@
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><?php echo $row['account_number'] ?></td>
 							<td><?php echo $row['name'] ?></td>
-							<td class='text-right'><?php echo number_format($row['balance'],2) ?></td>
+							<td class='text-right'><?php echo $row['balance'] ?></td>
 							<td><?php echo $row['date_created'] ?></td>
-							<td><?php echo $row['date_updated'] ?></td>
+							<td><?php echo $row['address'] ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

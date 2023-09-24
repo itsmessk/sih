@@ -26,7 +26,7 @@
   <div class="col-4 col-sm-4 col-md-4">
     <div class="card card-primary">
       <div class="card-header">
-        <h5 class="card-title">Total Purchase Orders</h5>
+        <h5 class="card-title">Total Procuremnt</h5>
       </div>
       <div class="card-body">
         <canvas id="poChart" width="200" height="200"></canvas>

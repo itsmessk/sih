@@ -118,13 +118,13 @@
                     </li>
                     <li class="nav-header">Vendor Information</li>
                     <li class="nav-item">
-                          <a href="./?page=accounts/manage_account" class="nav-link nav-manage_account">
+                          <a href="./?page=accounts/manage_account" class="nav-link nav-accounts">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Create Vendor</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="./?page=accounts" class="nav-link nav-index">
+                          <a href="./?page=accounts" class="nav-link nav-">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Vendor</p>
                           </a>
@@ -133,7 +133,7 @@
                       <a href="<?php echo base_url ?>admin/?page=suppliers" class="nav-link nav-suppliers">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
-                        Vendor List
+                        Supplier List
                         </p>
                       </a>
                     </li>
@@ -153,7 +153,7 @@
                       </a>
                     </li>
                     </li><li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=purchase_orders" class="nav-link nav-">
+                      <a href="<?php echo base_url ?>admin/?page=report_vendor" class="nav-link nav-report_vendor">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>
                           Reports
