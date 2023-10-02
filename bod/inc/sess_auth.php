@@ -13,10 +13,10 @@ if(!isset($_SESSION['userdata']) && !strpos($link, 'login.php')){
 	redirect('login');
 }
 if(isset($_SESSION['userdata']) && strpos($link, 'login.php')){
-	redirect('admin');
+	redirect('bod');
 }
 $module = array('','admin','staff','bod');
-if(isset($_SESSION['userdata']) && (strpos($link, 'index.php') || strpos($link, 'admin/')) && $_SESSION['userdata']['login_type'] !=  1){
+if(isset($_SESSION['userdata']) && (strpos($link, 'index.php') || strpos($link, 'bod/')) && $_SESSION['userdata']['login_type'] !=  3){
 	echo "<script>alert('Access Denied!');location.replace('".base_url.$module[$_SESSION['userdata']['login_type']]."');</script>";
     exit;
 }

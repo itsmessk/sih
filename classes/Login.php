@@ -1,55 +1,80 @@
 <?php
 require_once '../config.php';
-class Login extends DBConnection {
+class Login extends DBConnection
+{
 	private $settings;
-	public function __construct(){
+	public function __construct()
+	{
 		global $_settings;
 		$this->settings = $_settings;
 
 		parent::__construct();
 		ini_set('display_error', 1);
 	}
-	public function __destruct(){
+	public function __destruct()
+	{
 		parent::__destruct();
 	}
-	public function index(){
-		echo "<h1>Access Denied</h1> <a href='".base_url."'>Go Back.</a>";
+	public function index()
+	{
+		echo "<h1>Access Denied</h1> <a href='" . base_url . "'>Go Back.</a>";
 	}
-	public function login(){
+	public function login()
+	{
 		extract($_POST);
 
-		$qry = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') ");
-		if($qry->num_rows > 0){
-			foreach($qry->fetch_array() as $k => $v){
-				if(!is_numeric($k) && $k != 'password'){
-					$this->settings->set_userdata($k,$v);
+		$qry = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') and type = '$type' ");
+		if ($qry->num_rows > 0) {
+			foreach ($qry->fetch_array() as $k => $v) {
+				if (!is_numeric($k) && $k != 'password') {
+					$this->settings->set_userdata($k, $v);
 				}
-
 			}
-			$this->settings->set_userdata('login_type',1);
-		return json_encode(array('status'=>'success'));
-		}else{
-		return json_encode(array('status'=>'incorrect','last_qry'=>"SELECT * from users where username = '$username' and password = md5('$password') "));
+
+			if ($type == 1) {
+				$this->settings->set_userdata('login_type', 1);
+				$this->settings->set_userdata('login_user', 'admin');
+			} else if ($type == 2) {
+				$this->settings->set_userdata('login_type', 2);
+				$this->settings->set_userdata('login_user', 'staff');
+
+			} else if ($type == 3) {
+				$this->settings->set_userdata('login_type', 3);
+				$this->settings->set_userdata('login_user', 'bod');
+			} else {
+				$this->settings->set_userdata('login_type', 4);
+			}
+
+
+			return json_encode(array('status' => 'success'));
+
+			
+		} else {
+			return json_encode(array('status' => 'incorrect', 'last_qry' => "SELECT * from users where username = '$username' and password = md5('$password') "));
+		}
+		
+
+	}
+	public function logout()
+	{
+		if ($this->settings->sess_des()) {
+			redirect('login');
 		}
 	}
-	public function logout(){
-		if($this->settings->sess_des()){
-			redirect('admin/login.php');
-		}
-	}
-	function login_user(){
+	function login_user()
+	{
 		extract($_POST);
 		$qry = $this->conn->query("SELECT * from clients where email = '$email' and password = md5('$password') ");
-		if($qry->num_rows > 0){
-			foreach($qry->fetch_array() as $k => $v){
-				$this->settings->set_userdata($k,$v);
+		if ($qry->num_rows > 0) {
+			foreach ($qry->fetch_array() as $k => $v) {
+				$this->settings->set_userdata($k, $v);
 			}
-			$this->settings->set_userdata('login_type',1);
-		$resp['status'] = 'success';
-		}else{
-		$resp['status'] = 'incorrect';
+			$this->settings->set_userdata('login_type', 1);
+			$resp['status'] = 'success';
+		} else {
+			$resp['status'] = 'incorrect';
 		}
-		if($this->conn->error){
+		if ($this->conn->error) {
 			$resp['status'] = 'failed';
 			$resp['_error'] = $this->conn->error;
 		}
@@ -72,4 +97,3 @@ switch ($action) {
 		echo $auth->index();
 		break;
 }
-

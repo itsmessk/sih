@@ -39,7 +39,7 @@ $(document).ready(function(){
 				if(resp){
 					resp = JSON.parse(resp)
 					if(resp.status == 'success'){
-						location.replace(_base_url_+'admin');
+						location.replace(_base_url_);
 					}else if(resp.status == 'incorrect'){
 						var _frm = $('#login-frm')
 						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
@@ -47,7 +47,7 @@ $(document).ready(function(){
 						_frm.find('input').addClass('is-invalid')
 						$('[name="username"]').focus()
 					}
-						end_loader()
+					end_loader()
 				}
 			}
 		})
@@ -70,7 +70,7 @@ $(document).ready(function(){
 				if(resp){
 					resp = JSON.parse(resp)
 					if(resp.status == 'success'){
-						location.replace(_base_url_+'faculty');
+						location.replace(_base_url_+'staff');
 					}else if(resp.status == 'incorrect'){
 						var _frm = $('#flogin-frm')
 						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
@@ -102,7 +102,7 @@ $(document).ready(function(){
 				if(resp){
 					resp = JSON.parse(resp)
 					if(resp.status == 'success'){
-						location.replace(_base_url_+'student');
+						location.replace(_base_url_+'bod');
 					}else if(resp.status == 'incorrect'){
 						var _frm = $('#slogin-frm')
 						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
