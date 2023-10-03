@@ -17,6 +17,6 @@ if(isset($_SESSION['userdata']) && strpos($link, 'login.php')){
 }
 $module = array('','admin','staff','bod');
 if(isset($_SESSION['userdata']) && (strpos($link, 'index.php') || strpos($link, 'admin/')) && $_SESSION['userdata']['login_type'] !=  1){
-	echo "<script>alert('Access Denied!');location.replace('".base_url.$module[$_SESSION['userdata']['login_type']]."');</script>";
+	echo "<script>alert('Access Denied! This is not what you are looking for.');location.replace('".base_url.$module[$_SESSION['userdata']['login_type']]."');</script>";
     exit;
 }
