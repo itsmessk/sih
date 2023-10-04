@@ -66,34 +66,18 @@ if (isset($id)) {
 								class="form-control form-control-sm" required>
 						</div>
 
-						<div class="row">
-    <div class="col-md-6">
-        <!-- Source of Procurement -->
-        <div class="form-group">
-            <label for="customer_name" class="control-label">Source of Procurement</label>
-            <input type="text" name="customer_name" id="customer_name" class="form-control form no-resize" value="<?php echo isset($customer_name) ? $customer_name : ''; ?>">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <!-- Vendor ID -->
-        <div class="form-group">
-            <label for="vendor_id" class="control-label">Vendor ID</label>
-            <input type="text" name="vendor_id" id="vendor_id" class="form-control form no-resize">
-			
-        </div>
-    </div>
-</div>
+						<div class="row ">
+							<div class="col-md-12">
+								<!-- Source of Procurement -->
+								<div class="form-group">
+									<label for="customer_name" class="control-label">Source of Procurement</label>
+									<input type="text" name="customer_name" id="customer_name"
+										class="form-control form-control-sm"
+										value="<?php echo isset($customer_name) ? $customer_name : ''; ?>">
+								</div>
+							</div>
 
-
-
-
-
-
-
-
-
-
-
+						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
@@ -106,7 +90,25 @@ if (isset($id)) {
 								</option>
 							</select>
 						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="category_id" class="control-label">Vendor ID</label>
+								<select id="category_id" class="custom-select custom-select-sm select select2">
+									<?php
+									$i = 0;
+									$qry = $conn->query("SELECT * FROM category_list where `type` = {$type} ");
+									while ($row = $qry->fetch_assoc()):
+										$i++;
+										?>
+										<option value="<?php echo $row['id'] ?>" <?php echo $i == 1 ? 'selected' : '' ?>>
+											<?php echo $row['name'] ?>
+										</option>
+									<?php endwhile; ?>
+								</select>
+							</div>
+						</div>
 					</div>
+
 				</div>
 				<hr>
 				<h4>Item Form:</h4>
@@ -222,27 +224,30 @@ if (isset($id)) {
 					</div>
 				</div>
 				<div class="row">
-    <div class="col-md-7">
-        <!-- Existing code for the remarks field -->
-        <div class="form-group">
-            <label for="remarks" class="control-label">Remarks</label>
-            <textarea name="remarks" id="remarks" cols="30" rows="2" class="form-control form no-resize summernote"><?php echo isset($remarks) ? $remarks : ''; ?></textarea>
-        </div>
-    </div>
-    <div class="col-md-5">
-        <!-- Add an upload button for documents -->
-        <div class="form-group">
-            <label for="document_upload" class="control-label">Upload Documents</label>
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" name="document_upload" id="document_upload" class="custom-file-input">
-                    <label class="custom-file-label" for="document_upload">Choose file</label>
-                </div>
-            </div>
-            <small class="form-text text-muted">Upload any supporting documents (e.g., PDFs, images).</small>
-        </div>
-    </div>
-</div>
+					<div class="col-md-7">
+						<!-- Existing code for the remarks field -->
+						<div class="form-group">
+							<label for="remarks" class="control-label">Remarks</label>
+							<textarea name="remarks" id="remarks" cols="30" rows="2"
+								class="form-control form no-resize summernote"><?php echo isset($remarks) ? $remarks : ''; ?></textarea>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<!-- Add an upload button for documents -->
+						<div class="form-group">
+							<label for="document_upload" class="control-label">Upload Documents</label>
+							<div class="input-group">
+								<div class="custom-file">
+									<input type="file" name="document_upload" id="document_upload"
+										class="custom-file-input">
+									<label class="custom-file-label" for="document_upload">Choose file</label>
+								</div>
+							</div>
+							<small class="form-text text-muted">Upload any supporting documents (e.g., PDFs,
+								images).</small>
+						</div>
+					</div>
+				</div>
 
 
 			</form>
