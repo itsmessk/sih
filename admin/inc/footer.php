@@ -56,10 +56,10 @@
   })
 </script>
 <footer class="main-footer text-sm">
-  <!-- <strong>Copyright © <?php echo date('Y') ?>.  -->
-  <!-- <a href=""></a> -->
+  <strong>Copyright © NEEPCO <?php echo date('Y') ?>. All rights reserved.
+  <a href=""></a>
   </strong>
-  .
+  
   <div class="float-right d-none d-sm-inline-block">
     <b>
       <?php echo $_settings->info('short_name') ?> (by: <a href="" target="blank">Team We Tried</a> )
