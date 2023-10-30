@@ -18,8 +18,9 @@
       text-shadow: 1px 1px #4c1d1d
     }
   </style>
-  <h1 class="text-center text-light py-5 login-title"><b>
-      <?php echo $_settings->info('name') ?>
+  <h1 class="text-center text-light py-5 login-title" style="text-align: center;"><b>
+      <?php  //echo $_settings->info('name') ?>
+      Procurement360: Complete Procurement <br> and Vendor-Payment Solution
     </b></h1>
   <div class="login-box">
     <!-- /.login-logo -->

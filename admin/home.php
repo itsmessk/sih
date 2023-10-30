@@ -1,4 +1,4 @@
-<h1 class="dark">Welcome to
+<h1 class="dark" style="text-align: center;">
     <?php echo $_settings->info('name') ?>
 </h1>
 

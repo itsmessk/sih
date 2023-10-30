@@ -56,7 +56,7 @@
   })
 </script>
 <footer class="main-footer text-sm">
-  <strong>Copyright © NEEPCO <?php echo date('Y') ?>. All rights reserved.
+  <strong>Copyright © Procurement360 <?php echo date('Y') ?>. All rights reserved.
   <a href=""></a>
   </strong>
   
