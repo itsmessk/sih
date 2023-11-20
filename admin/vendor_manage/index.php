@@ -5,9 +5,9 @@
 <?php endif;?>
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h3 class="card-title">List of Accounts</h3>
+		<h3 class="card-title">List of Vendors</h3>
 		<div class="card-tools">
-			<a href="?page=accounts/manage_account" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="?page=vendor_manage/manage_account" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -36,16 +36,16 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT *,concat(lastname,', ',firstname, middlename) as `name` from `accounts` order by concat(lastname,', ',firstname, middlename) desc ");
+						$qry = $conn->query("SELECT *,concat(p_name,', ',c_name) as `name` from `vendor` order by concat(c_name,', ',p_name) desc ");
 						while($row = $qry->fetch_assoc()):
 					?>
 					
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-							<td><?php echo $row['account_number'] ?></td>
-							<td><?php echo $row['name'] ?></td>
-							<td class='text-right'><?php echo $row['balance'] ?></td>
-							<td><?php echo $row['date_created'] ?></td>
+							<td><?php echo $row['vendor_number'] ?></td>
+							<td><?php echo $row['c_name'] ?></td>
+							<td class='text-right'><?php echo $row['contact_no'] ?></td>
+							<td><?php echo $row['date_added'] ?></td>
 							<td><?php echo $row['address'] ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -53,7 +53,7 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item edit_data" href="./?page=accounts/manage_account&id=<?php echo $row['id'] ?>" data-id="<?php echo $row['id'] ?>"> Edit</a>
+				                    <a class="dropdown-item edit_data" href="./?page=vendor_manage/manage_account&id=<?php echo $row['id'] ?>" data-id="<?php echo $row['id'] ?>"> Edit</a>
                                     <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"> Delete</a>
 				                  </div>
 							</td>

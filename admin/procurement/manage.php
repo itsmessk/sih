@@ -50,7 +50,7 @@ if (isset($id)) {
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title">
-			<?php echo !isset($_GET['id']) ? "New Invoice" : "Edit Invoice" ?>
+			<?php echo !isset($_GET['id']) ? "New Procurement" : "Edit Procurement" ?>
 		</h3>
 	</div>
 	<div class="card-body">

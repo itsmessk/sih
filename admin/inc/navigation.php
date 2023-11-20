@@ -151,17 +151,12 @@
               </li>
               <li class="nav-header">Vendor Management</li>
               <li class="nav-item">
-                <a href="./?page=vendor_create" class="nav-link nav-vendor_create">
-                  <i class="nav-icon fas fa-box"></i>
-                  <p>Create Record</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="./?page=vendor_manage" class="nav-link nav-vendor_manage">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Vendors</p>
+                  <i class="nav-icon fas fa-box"></i>
+                  <p>Manage Vendor</p>
                 </a>
               </li>
+              
 
               <li class="nav-item dropdown">
                 <a href="<?php echo base_url ?>admin/?page=suppliers" class="nav-link nav-suppliers">

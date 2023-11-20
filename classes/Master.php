@@ -600,18 +600,13 @@ Class Master extends DBConnection {
 		if(isset($password))
 			$data.= " `password` = md5('{$password}') ";
 		if(empty($id)){
-			$sql = "INSERT INTO `accounts` set {$data}";
+			$sql = "INSERT INTO `vendor` set {$data}";
 		}else{
-			$sql = "UPDATE `accounts` set {$data} where id = {$id}";
+			$sql = "UPDATE `vendor` set {$data} where id = {$id}";
 		}
 		$save =  $this->conn->query($sql);
 		$this->capture_err();
 		if($save){
-			if(empty($id)){
-				$id = $this->conn->insert_id;
-				$this->conn->query("INSERT INTO `transactions` set account_id ={$id},remarks='Beginning balance',`type` = 1, `amount` = '{$balance}' ");
-				$this->capture_err();
-			}
 			$resp['status']='success';
 			$this->settings->set_flashdata('success',' Account successfully saved.');
 		}
@@ -619,7 +614,7 @@ Class Master extends DBConnection {
 	}
 	function check_account(){
 		extract($_POST);
-		$chk = $this->conn->query("SELECT * FROM `accounts` where account_number = '{$account_number}' ".($id > 0 ? " and id != '{$id}' " : ''));
+		$chk = $this->conn->query("SELECT * FROM `vendor` where vendor_number = '{$vendor_number}' ".($id > 0 ? " and id != '{$id}' " : ''));
 		$this->capture_err();
 		if($chk->num_rows > 0){
 			$resp['status'] = 'taken';
@@ -630,7 +625,7 @@ Class Master extends DBConnection {
 	}
 	function get_account(){
 		extract($_POST);
-		$qry = $this->conn->query("SELECT id,balance,concat(lastname,', ',firstname,' ',middlename) as name FROM `accounts` where account_number = '{$account_number}' ");
+		$qry = $this->conn->query("SELECT id,vendor_number , c_name as name FROM `vendor` where vendor_number = '{$vendor_number}' ");
 		$this->capture_err();
 		if($qry->num_rows > 0){
 			$resp['status'] = 'success';
@@ -642,11 +637,10 @@ Class Master extends DBConnection {
 	}
 	function delete_account(){
 		extract($_POST);
-		$delete = $this->conn->query("DELETE FROM `accounts` where id = {$id}");
+		$delete = $this->conn->query("DELETE FROM `vendor` where id = {$id}");
 		$this->capture_err();
-		$delete1 = $this->conn->query("DELETE FROM `transactions` where account_id = {$id}");
-		$this->capture_err();
-		if($delete && $delete1){
+		
+		if($delete){
 			$resp['status'] ='success';
 			$this->settings->set_flashdata('success', 'Account successfully deleted.');
 		}else{
