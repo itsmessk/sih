@@ -1,9 +1,9 @@
 <?php
 require_once('config.php'); // Include your config.php file
- // Start the session
+// Start the session
 
 // Check if the user is not logged in (assuming 'login_type' is set to 1 for logged-in users)
-if (!isset($_SESSION['userdata']['login_type']) || $_SESSION['userdata']['login_type'] != 1 || $_SESSION['userdata']['login_type'] != 2 || $_SESSION['userdata']['login_type'] != 3) {
+if (!isset($_SESSION['userdata']['login_type'])) {
     redirect('login');
     exit; // Make sure to exit after the redirection
 }
@@ -21,6 +21,9 @@ switch ($type) {
         break;
     case 3:
         redirect('bod'); // Redirect to the 'bod' directory or page
+        break;
+    case 4:
+        redirect('vendor'); // Redirect to the 'bod' directory or page
         break;
     default:
         echo 'User type not available';

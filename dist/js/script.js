@@ -115,6 +115,36 @@ $(document).ready(function(){
 			}
 		})
 	})
+	$('#slogin-frm').submit(function(e){
+		e.preventDefault()
+		start_loader()
+		if($('.err_msg').length > 0)
+			$('.err_msg').remove()
+		$.ajax({
+			url:_base_url_+'classes/Login.php?f=slogin',
+			method:'POST',
+			data:$(this).serialize(),
+			error:err=>{
+				console.log(err)
+
+			},
+			success:function(resp){
+				if(resp){
+					resp = JSON.parse(resp)
+					if(resp.status == 'success'){
+						location.replace(_base_url_+'vendor');
+					}else if(resp.status == 'incorrect'){
+						var _frm = $('#slogin-frm')
+						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
+						_frm.prepend(_msg)
+						_frm.find('input').addClass('is-invalid')
+						$('[name="username"]').focus()
+					}
+						end_loader()
+				}
+			}
+		})
+	})
 	// System Info
 	$('#system-frm').submit(function(e){
 		e.preventDefault()

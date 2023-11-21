@@ -44,7 +44,7 @@
 					while ($row = $qry->fetch_assoc()):
 						?>
 
-						<tr><?php if(!$row['status'] == 0){ ?>
+						<tr><?php if($row['status'] == 0){ ?>
 							<td class="text-center">
 								<?php echo $i++; ?>
 							</td>

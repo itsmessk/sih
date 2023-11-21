@@ -22,6 +22,7 @@
       <?php  //echo $_settings->info('name') ?>
       Procurement360: Complete Procurement <br> and Vendor-Payment Solution
     </b></h1>
+    
   <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline">
@@ -54,6 +55,7 @@
               <option value="1">Admin</option>
               <option value="2">Staff</option>
               <option value="3">Board of Directors (BoD)</option>
+              <option value="4">Vendor</option>
             </select>
           </div>
           <div id="roleMessage" style="color: red;">Please select a role.</div>

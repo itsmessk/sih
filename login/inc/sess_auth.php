@@ -21,6 +21,9 @@ else if(isset($_SESSION['userdata']) && strpos($link, 'login.php') && $_SESSION[
 else if(isset($_SESSION['userdata']) && strpos($link, 'login.php') && $_SESSION['userdata']['login_type'] == 3){
 	redirect('bod');
 }
+else if(isset($_SESSION['userdata']) && strpos($link, 'login.php') && $_SESSION['userdata']['login_type'] == 4){
+	redirect('vendor');
+}
 /* $module = array('','admin','staff','bod');
 if(isset($_SESSION['userdata']) && (strpos($link, 'index.php') || strpos($link, '')) && $_SESSION['userdata']['login_type'] !=  1){
 	echo "<script>alert('Access Denied!');location.replace('".base_url.$module[$_SESSION['userdata']['login_type']]."');</script>";

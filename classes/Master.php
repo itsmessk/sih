@@ -607,6 +607,18 @@ Class Master extends DBConnection {
 		$save =  $this->conn->query($sql);
 		$this->capture_err();
 		if($save){
+			if (empty($id)) {
+				// Fetch the last ID from the users table
+				$result = $this->conn->query("SELECT id FROM `users` ORDER BY id DESC LIMIT 1");
+				$lastUserId = $result->fetch_assoc()['id'];
+	
+				// Increment the last ID and use it for the new vendor record
+				$newUserId = $lastUserId + 1;
+	
+				$this->conn->query("INSERT INTO `users` SET id = {$newUserId}, username = '{$email}', firstname = '{$p_name}', lastname = '{$c_name}', password = md5('{$generated_password}') , `type` = 4");
+				$this->capture_err();
+			}
+	
 			$resp['status']='success';
 			$this->settings->set_flashdata('success',' Account successfully saved.');
 		}

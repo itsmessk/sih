@@ -41,8 +41,12 @@ class Login extends DBConnection
 			} else if ($type == 3) {
 				$this->settings->set_userdata('login_type', 3);
 				$this->settings->set_userdata('login_user', 'bod');
-			} else {
+			} else if ($type == 4){
 				$this->settings->set_userdata('login_type', 4);
+				$this->settings->set_userdata('login_user', 'vendor');
+			}
+			else{
+				$this->settings->set_userdata('login_type', 5);
 			}
 
 
