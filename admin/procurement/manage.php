@@ -60,29 +60,29 @@ if (isset($id)) {
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="invoice_code" class="control-label">Procurement Code</label>
-							<input type="text" name="invoice_code"
-								value="<?php echo isset($invoice_code) ? $invoice_code : ''; ?>"
+							<label for="proc_code" class="control-label">Procurement Code</label>
+							<input type="text" name="proc_code"
+								value="<?php echo isset($proc_code) ? $proc_code : ''; ?>"
 								class="form-control form-control-sm" required>
 						</div>
+					</div>
 
-						<div class="row ">
-							<div class="col-md-12">
-								<!-- Source of Procurement -->
-								<div class="form-group">
-									<label for="customer_name" class="control-label">Source of Procurement</label>
-									<input type="text" name="customer_name" id="customer_name"
-										class="form-control form-control-sm"
-										value="<?php echo isset($customer_name) ? $customer_name : ''; ?>">
-								</div>
-							</div>
 
+					<div class="col-md-6">
+						<!-- Source of Procurement -->
+						<div class="form-group">
+							<label for="customer_name" class="control-label">Source of Procurement</label>
+							<input type="text" name="customer_name" id="customer_name"
+								placeholder="GEM /OEM /Local Market" class="form-control form-control-sm"
+								value="<?php echo isset($proc_source) ? $proc_source : ''; ?>">
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="type" class="control-label">Type</label>
-							<select name="type" id="type" <?php echo isset($_GET['id']) ? "disabled" : "" ?>
+							<select name="type" id="type" class="custom-select custom-select-sm select select1" <?php echo isset($_GET['id']) ? "disabled" : "" ?>
 								class="custom-select custom-select-sm select">
 								<option value="1" <?php echo isset($type) && $type == 1 ? 'selected' : '' ?>>Product
 								</option>
@@ -90,41 +90,76 @@ if (isset($id)) {
 								</option>
 							</select>
 						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="category_id" class="control-label">Vendor ID</label>
-								<select id="category_id" class="custom-select custom-select-sm select select2">
-									<?php
-									$i = 0;
-									$qry = $conn->query("SELECT * FROM category_list where `type` = {$type} ");
-									while ($row = $qry->fetch_assoc()):
-										$i++;
-										?>
-										<option value="<?php echo $row['id'] ?>" <?php echo $i == 1 ? 'selected' : '' ?>>
-											<?php echo $row['name'] ?>
-										</option>
-									<?php endwhile; ?>
-								</select>
-							</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="vendor_name" class="control-label">Vendor Details</label>
+							<select id="vendor_name" class="custom-select custom-select-sm select select2">
+								<option selected disabled>Select Vendor</option>
+								<?php
+								$qry = $conn->query("SELECT * FROM vendor ORDER BY id");
+								while ($row = $qry->fetch_assoc()):
+									?>
+									<option value="<?php echo $row['id'] ?>">
+										<?php echo $row['c_name'] ?>
+									</option>
+								<?php endwhile; ?>
+							</select>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="payer_name" class="control-label">Paying Authority Details</label>
+							<select id="payer_name" class="custom-select custom-select-sm select select2">
+								<option selected disabled>Select Paying Authority</option>
+								<?php
+								$qry = $conn->query("SELECT * FROM vendor ORDER BY id");
+								while ($row = $qry->fetch_assoc()):
+									?>
+									<option value="<?php echo $row['id'] ?>">
+										<?php echo $row['c_name'] ?>
+									</option>
+								<?php endwhile; ?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="buyer_name" class="control-label">Buyer Details</label>
+							<select id="buyer_name" class="custom-select custom-select-sm select select2">
+								<option selected disabled>Select Buyer</option>
+								<?php
+								$qry = $conn->query("SELECT * FROM vendor ORDER BY id");
+								while ($row = $qry->fetch_assoc()):
+									?>
+									<option value="<?php echo $row['id'] ?>">
+										<?php echo $row['c_name'] ?>
+									</option>
+								<?php endwhile; ?>
+							</select>
 						</div>
 					</div>
 
 				</div>
-				<hr>
-				<h4>Item Form:</h4>
-				<div class="row align-items-end">
-					<div class="col-md-3">
+
+				<div class="row">
+					<div class="col-md-6">
 						<div class="form-group">
-							<label for="category_id" class="control-label">Category/ Project / Department</label>
-							<select id="category_id" class="custom-select custom-select-sm select select2">
+							<label for="consignee_name" class="control-label">Consignee Details</label>
+							<select id="consignee_name" class="custom-select custom-select-sm select select2">
+								<option selected disabled>Select Consignee</option>
 								<?php
-								$i = 0;
-								$qry = $conn->query("SELECT * FROM category_list where `type` = {$type} ");
+								$qry = $conn->query("SELECT * FROM vendor ORDER BY id");
 								while ($row = $qry->fetch_assoc()):
-									$i++;
 									?>
-									<option value="<?php echo $row['id'] ?>" <?php echo $i == 1 ? 'selected' : '' ?>>
-										<?php echo $row['name'] ?>
+									<option value="<?php echo $row['id'] ?>">
+										<?php echo $row['c_name'] ?>
 									</option>
 								<?php endwhile; ?>
 							</select>
@@ -132,131 +167,173 @@ if (isset($id)) {
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="form_id" class="control-label">Product/Service</label>
-							<select id="form_id" class="custom-select custom-select-sm select2">
-								<option selected="" disabled>Select Category First</option>
-								<?php
-								$data_json = array();
-								if ($type == 1):
-									$qry2 = $conn->query("SELECT * FROM product_list ");
-								else:
-									$qry2 = $conn->query("SELECT * FROM service_list ");
-								endif;
-								while ($row = $qry2->fetch_assoc()):
-									$name = ($type == 1) ? $row['product'] : $row['service'];
-									$row['description'] = stripslashes(html_entity_decode($row['description']));
-									$row['name'] = $name;
-									$data_json[$row['id']] = $row;
-									?>
-									<!-- <option value="<?php echo $row['id'] ?>" ><?php echo $name ?></option> -->
-								<?php endwhile; ?>
-							</select>
-							<small id="price"></small>
+							<label for="contractno" class="control-label">Contract Number</label>
+							<input type="text" name="contractno" id="contractno" placeholder="GEMC-511687755576635"
+								class="form-control form-control-sm"
+								value="<?php echo isset($cont_no) ? $cont_no : ''; ?>">
+
 						</div>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<div class="form-group">
-							<label for="unit" class="control-label">Unit</label>
-							<input type="text" id="unit" class="form-control">
+							<label for="delivery_date" class="control-label">Contract Date</label>
+							<input type="date" id="delivery_date" class="form-control"
+								class="form-control form-control-sm"
+								value="<?php echo isset($con_date) ? $con_date : ''; ?>">
 						</div>
 					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<label for="qty" class="control-label">QTY</label>
-							<input type="number" min='1' id="qty" class="form-control text-right">
-						</div>
-					</div>
-					<div class="col-md-2 pb-1">
-						<div class="form-group">
-							<button class="btn btn-flat btn-primary" type="button" id="add_item"><i
-									class="fa fa-plus"></i> Add</button>
-						</div>
-					</div>
+
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-bordered" id="item-list">
-							<colgroup>
-								<col width="10%">
-								<col width="15%">
-								<col width="30%">
-								<col width="15%">
-								<col width="15%">
-								<col width="5%">
-							</colgroup>
-							<thead>
-								<tr>
-									<th class="text-center">QTY</th>
-									<th class="text-center">UNIT</th>
-									<th class="text-center">Product/Service</th>
-									<th class="text-center">Cost</th>
-									<th class="text-center">Total</th>
-									<th class="text-center"></th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th class="text-right" colspan="4">Sub Total</th>
-									<th class="text-right" id="sub_total">0</th>
-									<th><input type="hidden" name="sub_total" value="0"></th>
-								</tr>
-								<tr>
-									<th class="text-right" colspan="4">Tax Rate</th>
-									<th class="text-right" id="tax_rate">
-										<?php echo $tax_rate ?>%
-									</th>
-									<th><input type="hidden" name="tax_rate" value="<?php echo $tax_rate ?>"></th>
-								</tr>
-								<tr>
-									<th class="text-right" colspan="4">Tax</th>
-									<th class="text-right" id="tax">0</th>
-									<th></th>
-								</tr>
-								<tr>
-									<th class="text-right" colspan="4">Grand Total</th>
-									<th class="text-right" id="gtotal">0</th>
-									<th><input type="hidden" name="total_amount" value="0"></th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
+				<hr>
+		</div>
+		<h4>Item Form:</h4>
+		<div class="row align-items-end">
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="category_id" class="control-label">Category/ Project / Department</label>
+					<select id="category_id" class="custom-select custom-select-sm select select2">
+						<option selected disabled>Select Category First</option>
+						<?php
+						$qry = $conn->query("SELECT * FROM category_list where `type` = {$type} ");
+						while ($row = $qry->fetch_assoc()):
+							?>
+							<option value="<?php echo $row['id'] ?>">
+								<?php echo $row['name'] ?>
+							</option>
+						<?php endwhile; ?>
+					</select>
 				</div>
-				<div class="row">
-					<div class="col-md-7">
-						<!-- Existing code for the remarks field -->
-						<div class="form-group">
-							<label for="remarks" class="control-label">Remarks</label>
-							<textarea name="remarks" id="remarks" cols="30" rows="2"
-								class="form-control form no-resize summernote"><?php echo isset($remarks) ? $remarks : ''; ?></textarea>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<!-- Add an upload button for documents -->
-						<div class="form-group">
-							<label for="document_upload" class="control-label">Upload Documents</label>
-							<div class="input-group">
-								<div class="custom-file">
-									<input type="file" name="document_upload" id="document_upload"
-										class="custom-file-input">
-									<label class="custom-file-label" for="document_upload">Choose file</label>
-								</div>
-							</div>
-							<small class="form-text text-muted">Upload any supporting documents (e.g., PDFs,
-								images).</small>
-						</div>
-					</div>
-				</div>
+			</div>
 
 
-			</form>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="form_id" class="control-label">Product/Service</label>
+					<select id="form_id" class="custom-select custom-select-sm select2">
+						<option selected="" disabled>Select Category First</option>
+						<?php
+						$data_json = array();
+						if ($type == 1):
+							$qry2 = $conn->query("SELECT * FROM product_list ");
+						else:
+							$qry2 = $conn->query("SELECT * FROM service_list ");
+						endif;
+						while ($row = $qry2->fetch_assoc()):
+							$name = ($type == 1) ? $row['product'] : $row['service'];
+							$row['description'] = stripslashes(html_entity_decode($row['description']));
+							$row['name'] = $name;
+							$data_json[$row['id']] = $row;
+							?>
+							<option value="<?php echo $row['id'] ?>">
+								<?php echo $name ?>
+							</option>
+						<?php endwhile; ?>
+					</select>
+					<small id="price"></small>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="unit" class="control-label">Unit</label>
+					<input type="text" id="unit" class="form-control">
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="qty" class="control-label">QTY</label>
+					<input type="number" min='1' id="qty" class="form-control text-right">
+				</div>
+			</div>
+			<div class="col-md-2 pb-1">
+				<div class="form-group">
+					<button class="btn btn-flat btn-primary" type="button" id="add_item"><i class="fa fa-plus"></i>
+						Add</button>
+				</div>
+			</div>
 		</div>
-		<div class="card-footer">
-			<button class="btn btn-flat btn-sm btn-primary" form="invoice-form">Save</button>
-			<a class="btn btn-flat btn-sm btn-default" href="./?page=procurement">Cancel</a>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered" id="item-list">
+					<colgroup>
+						<col width="10%">
+						<col width="15%">
+						<col width="30%">
+						<col width="15%">
+						<col width="15%">
+						<col width="5%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="text-center">QTY</th>
+							<th class="text-center">UNIT</th>
+							<th class="text-center">Product/Service</th>
+							<th class="text-center">Cost</th>
+							<th class="text-center">Total</th>
+							<th class="text-center"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th class="text-right" colspan="4">Sub Total</th>
+							<th class="text-right" id="sub_total">0</th>
+							<th><input type="hidden" name="sub_total" value="0"></th>
+						</tr>
+						<tr>
+							<th class="text-right" colspan="4">Tax Rate</th>
+							<th class="text-right" id="tax_rate">
+								<?php echo $tax_rate ?>%
+							</th>
+							<th><input type="hidden" name="tax_rate" value="<?php echo $tax_rate ?>"></th>
+						</tr>
+						<tr>
+							<th class="text-right" colspan="4">Tax</th>
+							<th class="text-right" id="tax">0</th>
+							<th></th>
+						</tr>
+						<tr>
+							<th class="text-right" colspan="4">Grand Total</th>
+							<th class="text-right" id="gtotal">0</th>
+							<th><input type="hidden" name="total_amount" value="0"></th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-7">
+				<!-- Existing code for the remarks field -->
+				<div class="form-group">
+					<label for="remarks" class="control-label">Remarks</label>
+					<textarea name="remarks" id="remarks" cols="30" rows="2"
+						class="form-control form no-resize summernote"><?php echo isset($remarks) ? $remarks : ''; ?></textarea>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<!-- Add an upload button for documents -->
+				<div class="form-group">
+					<label for="document_upload" class="control-label">Upload Documents</label>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" name="document_upload" id="document_upload" class="custom-file-input">
+							<label class="custom-file-label" for="document_upload">Choose file</label>
+						</div>
+					</div>
+					<small class="form-text text-muted">Upload any supporting documents (e.g., PDFs,
+						images).</small>
+				</div>
+			</div>
+		</div>
+
+
+		</form>
 	</div>
+	<div class="card-footer">
+		<button class="btn btn-flat btn-sm btn-primary" form="invoice-form">Save</button>
+		<a class="btn btn-flat btn-sm btn-default" href="./?page=procurement">Cancel</a>
+	</div>
+</div>
 </div>
 <script>
 	var item_arr = $.parseJSON('<?php echo json_encode($item_arr) ?>');
@@ -273,7 +350,7 @@ if (isset($id)) {
 			},
 			success: function (resp) {
 				if (resp.status == 'success') {
-					$('[name="invoice_code"]').val(resp.code)
+					$('[name="proc_code"]').val(resp.code)
 				} else {
 					console.log(resp)
 					alert_toast(' An error occured while generating invoice code', 'error')
@@ -416,7 +493,7 @@ if (isset($id)) {
 			$('#form_id').select2()
 		})
 		$('#category_id').trigger('change')
-		$('[name="invoice_code"]').on('input', function () {
+		$('[name="proc_code"]').on('input', function () {
 			$(this).removeClass('border-danger')
 			$(this).removeClass('border-success')
 			$.ajax({
@@ -430,9 +507,9 @@ if (isset($id)) {
 				},
 				success: function (resp) {
 					if (resp.status == 'available') {
-						$('[name="invoice_code"]').addClass('border-success')
+						$('[name="proc_code"]').addClass('border-success')
 					} else if (resp.status == 'taken') {
-						$('[name="invoice_code"]').addClass('border-danger')
+						$('[name="proc_code"]').addClass('border-danger')
 					} else {
 						console.log(resp)
 						alert_toast(' An error occured while validating invoice code', 'error')
@@ -449,7 +526,7 @@ if (isset($id)) {
 				alert_toast("No Items Listed.", 'warning')
 				return false;
 			}
-			if ($('[name="invoice_code"]').hasClass('border-danger') == true) {
+			if ($('[name="proc_code"]').hasClass('border-danger') == true) {
 				alert_toast("Invoice Code already exist.", 'warning')
 				return false;
 			}

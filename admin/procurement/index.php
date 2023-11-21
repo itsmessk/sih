@@ -43,8 +43,8 @@
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-							<td><?php echo $row['invoice_code'] ?></td>
-							<td><?php echo $row['customer_name'] ?></td>
+							<td><?php echo $row['vendor_name'] ?></td>
+							<td><?php echo $row['proc_code'] ?></td>
 							<td>
 								<p class="m-0"><small><b>Procurement Type:</b><?php echo $row['type'] == 1 ? "Product":"Service" ?></small></p>
 								<p class="m-0"><small><b>Item Count:</b> <?php echo number_format($items) ?></small></p>
