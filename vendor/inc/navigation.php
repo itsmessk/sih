@@ -140,6 +140,30 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item dropdown">
+                <a href="<?php echo base_url ?>admin/?page=payment_auth" class="nav-link nav-payment_auth">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                  Paying Authority
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="<?php echo base_url ?>admin/?page=buyer" class="nav-link nav-buyer">
+                  <i class="nav-icon fas fa-file-invoice"></i>
+                  <p>
+                  Buyer Details
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="<?php echo base_url ?>admin/?page=consignee" class="nav-link nav-consignee">
+                  <i class="nav-icon fas fa-truck-loading"></i>
+                  <p>
+                  Consignee Details
+                  </p>
+                </a>
+              </li>
               
               <li class="nav-item dropdown">
                 <a href="<?php echo base_url ?>admin/?page=payment_report" class="nav-link nav-payment_report">
