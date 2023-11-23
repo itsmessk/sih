@@ -65,14 +65,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
             <div class="col-6">
                 <p class="m-0"><b>Vendor</b></p>
                 <?php 
-                $sup_qry = $conn->query("SELECT * FROM supplier_list where id = '{$supplier_id}'");
+                $sup_qry = $conn->query("SELECT * FROM vendor where id = '{$supplier_id}'");
                 $supplier = $sup_qry->fetch_array();
                 ?>
                 <div>
-                    <p class="m-0"><?php echo $supplier['name'] ?></p>
+                    <p class="m-0"><?php echo $supplier['c_name'] ?></p>
                     <p class="m-0"><?php echo $supplier['address'] ?></p>
-                    <p class="m-0"><?php echo $supplier['contact_person'] ?></p>
-                    <p class="m-0"><?php echo $supplier['contact'] ?></p>
+                    <p class="m-0"><?php echo $supplier['p_name'] ?></p>
+                    <p class="m-0"><?php echo $supplier['contact_no'] ?></p>
                     <p class="m-0"><?php echo $supplier['email'] ?></p>
                 </div>
             </div>

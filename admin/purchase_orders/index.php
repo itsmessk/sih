@@ -13,7 +13,7 @@
 	<div class="card-body">
 		<div class="container-fluid">
         <div class="container-fluid">
-			<table class="table table-hover table-striped">
+			<table class="table table-bordered table-striped">
 				<colgroup>
 					<col width="5%">
 					<col width="15%">
@@ -25,7 +25,7 @@
 					<col width="10%">
 				</colgroup>
 				<thead>
-					<tr class="">
+					<tr class="bg disabled">
 						<th>#</th>
 						<th>Date Created</th>
 						<th>PO #</th>
@@ -39,7 +39,7 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT po.*, s.name as sname FROM `po_list` po inner join `supplier_list` s on po.supplier_id = s.id order by unix_timestamp(po.date_updated) ");
+						$qry = $conn->query("SELECT po.*, s.c_name as sname FROM `po_list` po inner join `vendor` s on po.supplier_id = s.id order by unix_timestamp(po.date_updated) ");
 						while($row = $qry->fetch_assoc()):
 							$row['item_count'] = $conn->query("SELECT * FROM order_items where po_id = '{$row['id']}'")->num_rows;
 							$row['total_amount'] = $conn->query("SELECT sum(quantity * unit_price) as total FROM order_items where po_id = '{$row['id']}'")->fetch_array()['total'];
